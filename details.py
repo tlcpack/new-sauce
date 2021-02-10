@@ -2,7 +2,7 @@ import openpyxl
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
 
-wb = load_workbook('Client Detail_2021_1H.xlsx', data_only=True)
+wb = load_workbook('Client Detail_2021_2H_concat.xlsx', data_only=True)
 row_counter = 2
 bold = Font(bold=True)
 total_clients = ['C3 Presents-ACL Festival', 'C3 Presents-Lollapalooza', 'C3 Presents-Voodoo Festival', 'C3 Presents-Sea.Hear.Now.Festival']
@@ -52,7 +52,7 @@ def new_workbook():
 for client in all_clients:
     client_wb = new_workbook()
     for sheet in all_sheets:
-        if str(sheet) == 'FedEx': # 23
+        if str(sheet) == 'FedEx': # W 23
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
@@ -63,7 +63,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'USPS': # 52
+        if str(sheet) == 'USPS': # 52 AZ
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
@@ -74,7 +74,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'DHL E-Com': # 48
+        if str(sheet) == 'DHL E-Com': # 48 AV
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
@@ -96,12 +96,12 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'UPS': # 14
+        if str(sheet) == 'UPS': # 17 Q
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
                 actual_col = 1
-                if client == wb[str(sheet)].cell(row= actual_row, column= 14).value:
+                if client == wb[str(sheet)].cell(row= actual_row, column= 17).value:
                     for cell in row:
                         client_wb[str(sheet)].cell(row = row_counter, column = actual_col).value = cell.value
                         actual_col += 1
@@ -129,7 +129,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'SH_Product_Locations': # 13
+        if str(sheet) == 'SH_Product_Locations': # 13 M
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
@@ -206,7 +206,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'SH Returns': # 16
+        if str(sheet) == 'SH Returns': # 16 P
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
@@ -239,7 +239,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'Direct Procurement': # 8
+        if str(sheet) == 'Direct Procurement': # 8 H
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
@@ -250,7 +250,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
-        if str(sheet) == 'SH_Shipments': # 20
+        if str(sheet) == 'SH_Shipments': # 20 T
             actual_row = 1
             row_counter = 2
             for row in wb[str(sheet)].rows:
