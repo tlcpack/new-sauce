@@ -2,6 +2,7 @@ import openpyxl
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
 import pandas as pd
+from pandas import ExcelWriter
 from datetime import datetime
 
 now = datetime.now()
@@ -23,9 +24,16 @@ worksheets = wb.sheet_names # gets sheet names - works
 # print(clients)
 
 fedex = pd.read_excel(wb, 'FedEx', header=0)
-kammok = fedex[fedex['concat'] == 'Kammok']
+usps = pd.read_excel(wb, 'USPS', header=0)
+howler_fed = fedex[fedex['concat'] == 'Howler Brothers']
+howler_usps = usps[usps['concat'] == 'Howler Brothers']
 
-kammok.to_excel(f'testDetails_{dt_string}.xlsx')
+# kammok.to_excel(f'testDetails_{dt_string}.xlsx', sheet_name='Fedex')
+
+# writing multiple sheets:
+with pd.ExcelWriter(f'testDetails_{dt_string}.xlsx') as writer:  # pylint: disable=abstract-class-instantiated
+    howler_fed.to_excel(writer, sheet_name='Fedex')
+    howler_usps.to_excel(writer, sheet_name='usps')
 
 # for sheet in worksheets:
 #     client = 'Airhouse'
