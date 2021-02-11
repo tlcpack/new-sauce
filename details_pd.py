@@ -2,9 +2,13 @@ import openpyxl
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
 import pandas as pd
+from datetime import datetime
+
+now = datetime.now()
+dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
 
 wb = pd.ExcelFile('Client Detail_2021_2H_concat_slim_pandas.xlsx', engine='openpyxl')
-worksheets = wb.sheet_names # gets sheet names
+worksheets = wb.sheet_names # gets sheet names - works
 
 # trying to print data for client
 # client = 'Kammok'
@@ -13,10 +17,15 @@ worksheets = wb.sheet_names # gets sheet names
 # df = df.dropna()
 # print(df.head(10))
 
-# gets clients from weekly pallet counts
-wpc_df = pd.read_excel(wb, 'Weekly Pallet Counts')
-clients = wpc_df['concat'].unique()
-print(clients)
+# gets clients from weekly pallet counts - works
+# wpc_df = pd.read_excel(wb, 'Weekly Pallet Counts')
+# clients = wpc_df['concat'].unique()
+# print(clients)
+
+fedex = pd.read_excel(wb, 'FedEx', header=0)
+kammok = fedex[fedex['concat'] == 'Kammok']
+
+kammok.to_excel(f'testDetails_{dt_string}.xlsx')
 
 # for sheet in worksheets:
 #     client = 'Airhouse'
