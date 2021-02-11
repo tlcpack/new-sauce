@@ -1,8 +1,9 @@
 import openpyxl
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
+import pandas as pd
 
-wb = load_workbook('Client Detail_2021_2H_concat.xlsx', data_only=True)
+wb = load_workbook('Client Detail_2021_2H_concat_test.xlsx', data_only=True, read_only=True)
 row_counter = 2
 bold = Font(bold=True)
 total_clients = ['C3 Presents-ACL Festival', 'C3 Presents-Lollapalooza', 'C3 Presents-Voodoo Festival', 'C3 Presents-Sea.Hear.Now.Festival']
@@ -40,6 +41,7 @@ def new_workbook():
                 created_wb[str(sheet)].cell(row=i, column=j).value = wb[str(sheet)].cell(row=i, column=j).value
                 created_wb[str(sheet)].cell(row=i, column=j).font = bold
     del created_wb['Sheet']
+    print('workbook created')
     return created_wb
 
 # ws_max_rows = ws1.max_row
@@ -47,9 +49,9 @@ def new_workbook():
 # wb[str(sheet)].max_row + 1
 # =IF(W2="C3 Presents",CONCAT(W2,"-",Z2),W2)
 
-# testing_clients=['Howler Brothers', 'William Murray Golf']
+testing_clients=['Howler Brothers', 'William Murray Golf', 'Airhouse', 'HELM']
 
-for client in all_clients:
+for client in testing_clients:
     client_wb = new_workbook()
     for sheet in all_sheets:
         if str(sheet) == 'FedEx': # W 23
@@ -63,6 +65,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
+            print('fedex')
         if str(sheet) == 'USPS': # 52 AZ
             actual_row = 1
             row_counter = 2
@@ -74,6 +77,7 @@ for client in all_clients:
                         actual_col += 1
                     row_counter += 1
                 actual_row += 1
+            print('usps')
         if str(sheet) == 'DHL E-Com': # 48 AV
             actual_row = 1
             row_counter = 2
@@ -266,4 +270,4 @@ for client in all_clients:
             del client_wb[str(sheet)]
     if len(client_wb.sheetnames) == 0:
         client_wb.create_sheet('NONE')
-    client_wb.save(filename=f'Customer_{client}_NoBlanks.xlsx')
+    client_wb.save(filename=f'Customer_{client}_test_withmax.xlsx')
