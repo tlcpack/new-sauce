@@ -8,7 +8,7 @@ from datetime import datetime
 now = datetime.now()
 dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
 
-wb = pd.ExcelFile('Client Detail_2021_2H_concat.xlsx', engine='openpyxl')
+wb = pd.ExcelFile('Client Detail_2021_2H_concat_slim_pandas.xlsx', engine='openpyxl')
 worksheets = wb.sheet_names # gets sheet names - works but also creates sheet named ' (200)  Storage' that needs to be deleted
 
 del worksheets[0]
@@ -30,20 +30,23 @@ clients = wpc_df['concat'].unique()
 # with pd.ExcelWriter(f'testDetails_{dt_string}.xlsx') as writer:  # pylint: disable=abstract-class-instantiated
 #     howler_fed.to_excel(writer, sheet_name='Fedex')
 #     howler_usps.to_excel(writer, sheet_name='usps')
-# testing_clients = ['Howler Brothers', 'Rowing Blazers', 'Trek Light Gear', 'William Murray Golf']
+testing_clients = ['Howler Brothers', 'Rowing Blazers', 'Trek Light Gear', 'William Murray Golf']
 
 # check for empty df: https://thispointer.com/pandas-4-ways-to-check-if-a-dataframe-is-empty-in-python/
 
-for client in clients:
+for client in testing_clients:
     print(client)
-    writer = ExcelWriter(f'{client}_Details_{dt_string}.xlsx')
+    writer = ExcelWriter(f'{client}_Details_{dt_string}_test.xlsx', index=False)
     for sheet in worksheets:
         print(sheet)
         sheet_frame = pd.read_excel(wb, sheet, header=0)
         if 'concat' in sheet_frame.columns:
             client_sheet = sheet_frame[sheet_frame['concat'] == client]
+            print(client_sheet.shape)
+            if client_sheet.shape[0] == 0:
+                continue
             # with pd.ExcelWriter(f'{client}_Details_{dt_string}.xlsx') as writer:  # pylint: disable=abstract-class-instantiated
-            client_sheet.to_excel(writer, sheet_name=sheet)
+            client_sheet.to_excel(writer, index=False, sheet_name=sheet)
         else:
             pass
     writer.save()
