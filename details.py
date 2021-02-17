@@ -7,9 +7,9 @@ wb = load_workbook('Client Detail_2021_2H_concat_test.xlsx', data_only=True, rea
 row_counter = 2
 bold = Font(bold=True)
 total_clients = ['C3 Presents-ACL Festival', 'C3 Presents-Lollapalooza', 'C3 Presents-Voodoo Festival', 'C3 Presents-Sea.Hear.Now.Festival']
-# total_clients = ['Airhouse', 'Alvies', 'ArtStartArt', 'Atomic Athlete', 'Austin City Limits', 'Austin Eastciders', 'Austin Emergency Supply Foundation', 'Bumper Active', 'C3 Presents', 'ChopFit', 'Classic Dad Move', 'Department of Brewology', 'Duck Camp', 'Elemental Knives', 'Evil Nails', 'Hands To Hearts', 'HELM', 'Hi How Are You', 'Howler Brothers', 'I Build America', 'Kammok', 'Kelly Wynne', 'Knocki', 'Membersy', 'Mohawk Austin', 'Moon Fabrications', 'Neuron Garage', 'Nomad Grills', 'One Blade', 'Pepper', 'Primal 7', 'Ranch Rider', 'Rowdy Gentleman', 'Rowing Blazers', 'Save Muny', "Serota's Underarm Balm", 'Shopify Fulfillment Network', None, 'Siete', 'Spellbound Sleep', 'SXSW', 'Texas Humor', 'Texas Monthly', 'The Chivery', "Tito's Vodka", 'Trek Light Gear', 'Ubuntu', 'Vochill', 'Warstic', 'Waterloo Sparkling Water', 'William Murray Golf']
+
 all_sheets = wb.sheetnames
-# all_sheets = ['FedEx', 'USPS', 'DHL E-Commerce', 'UPS', 'APC', 'SH Product Locations', 'Pallet Counts', 'ShipHero Shipments', 'Heatonist Subscriptions', 'The Chivery', 'Returns', 'WMG Returns', 'Howler Returns', 'Purchase Orders', 'Labor']
+
 print("loaded")
 
 ### which worksheet has client names
